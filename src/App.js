@@ -1,25 +1,63 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import styled from "styled-components";
+import cat from './Media/cat.png'
+import dead from './Media/cat-dead.png'
 
-function App() {
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const Scoreboard = styled.div`
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 20px;
+`;
+
+const CatImage = styled.img`
+  // width: 200px;
+  // height: 200px;
+  margin-top: 20px;
+  cursor: pointer;
+`;
+
+const DeadCatImage = styled.img`
+  // width: 200px;
+  // height: 200px;
+  margin-top: 20px;
+`;
+
+const Game = () => {
+  const [lives, setLives] = useState(9);
+  const [isDead, setIsDead] = useState(false);
+  const [life, setLife] = useState(0);
+
+  const handleCatClick = () => {
+    if (lives > 0) {
+      setLives(lives - 1);
+    }
+
+    if (lives === 1) {
+      setIsDead(true);
+    }
+  };
+
+  const handleDeadCatClick = () => {
+    setLives(9);
+    setIsDead(false);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      {isDead ? (
+        <DeadCatImage src={dead} alt="dead cat" onClick={handleDeadCatClick} />
+      ) : (
+        <CatImage src={cat} alt="cat" onClick={handleCatClick} />
+      )}
+      <Scoreboard>Lives: {lives}</Scoreboard>
+    </Container>
   );
-}
+};
 
-export default App;
+export default Game;
