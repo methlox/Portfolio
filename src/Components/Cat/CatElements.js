@@ -5,6 +5,9 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   margin-top: 15em;
+  background-color: ${(props) => props.theme.backgroundColor};
+  color: ${(props) => props.theme.textColor};
+  transition: background-color 0.2s ease-in-out;
 `;
 
 export const Scoreboard = styled.div`
@@ -12,7 +15,7 @@ export const Scoreboard = styled.div`
   font-size: 24px;
   font-weight: bold;
   margin-top: 20px;
-  transform: scale(1.5);
+  font-color: ${(props) => props.theme.textColor};
 `;
 
 export const CatImage = styled.img`
@@ -22,5 +25,15 @@ export const CatImage = styled.img`
 
 export const DeadCatImage = styled.img`
   margin-top: 20px;
+  cursor: pointer;
+`;
+
+export const ThemeToggleButton = styled.button`
+  margin-top: 20px;
+  padding: 10px;
+  background-color: ${(props) => props.theme.backgroundColor};
+  color: ${(props) => props.theme.textColor};
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
 `;
